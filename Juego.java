@@ -444,6 +444,7 @@ public class Juego
 		imprimirGraficoBandera(banderas, indices[18]);*/	
 		
 		
+		
 		boolean bandera;
 		
 		do
