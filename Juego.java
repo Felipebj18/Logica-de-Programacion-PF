@@ -1,3 +1,4 @@
+
 //para interfaces y clases
 	import java.util.*;
 	import java.util.Arrays; 
@@ -493,4 +494,3 @@ public class Juego
 	}
 
 }
-
