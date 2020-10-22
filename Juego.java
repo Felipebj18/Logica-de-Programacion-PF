@@ -1,3 +1,4 @@
+
 //para interfaces y clases
 	import java.util.*;
 	import java.util.Arrays; 
@@ -27,19 +28,6 @@ public class Juego
 		}
 		System.out.println(ConsoleColors.RESET);
 	}
-
-	public static int subMenuSeleccionBandera(int[] indices)
-	{
-		int opc = 0;
-
-		do{
-			System.out.println("Ingrese un valor entre 1 y "+indices.length);
-			opc = ConsoleInput.getInt();
-		}while(opc<0 || opc==0 || opc>indices.length);
-
-		return opc-1;
-	}
-	
 	public static void imprimirGraficoBandera(String[] banderas, int indice)
 	{
 		for (int i=indice;i<indice+20;i++ ) //las matrices de las banderas avanzan de a 20
@@ -49,60 +37,189 @@ public class Juego
 			
 	}
 
-	public static void imprimirInformacionBandera(String[] banderas,int indice)
-	{
-		String fila[];
 
-		for (int i=indice;i<indice+20;i++ ) {
-			if(i == indice)
-			{
-				fila = banderas[i].split(";");
-				System.out.println("Nombre pais: "+fila[0]);
-				/*System.out.println("Capital: "+fila[1]);
-				System.out.println("Idioma: "+fila[2]);*/
-			}
-			else{
-				System.out.println(banderas[i]);
-			}
-		}
+
+	public static void separador()
+	{
+		
+		System.out.println(ConsoleColors.BLUE+"_  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _ _  _  _  _  _  _ "+ConsoleColors.RESET);
+		System.out.println();
+		System.out.println(ConsoleColors.CYAN+"| /|| /|| /|| /|| /|| /|| /|| /|| /|| /|| /|| /|| || /|| /|| /|| /|| "+ConsoleColors.RESET);
+		System.out.println(ConsoleColors.BLUE+"_  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _  _"+ConsoleColors.RESET);
+	}
+	
+	public static void correcto()
+	{
+		System.out.println(ConsoleColors.GREEN_BACKGROUND_BRIGHT + "                            "+ConsoleColors.RESET);
+		System.out.println(ConsoleColors.GREEN_BOLD+"########  #### ######## ##    ##");
+		System.out.println(ConsoleColors.GREEN_BOLD+"##     ##  ##  ##       ###   ##");
+		System.out.println(ConsoleColors.GREEN_BOLD+"##     ##  ##  ##       ####  ##");
+		System.out.println(ConsoleColors.GREEN_BOLD+"########   ##  ######   ## ## ##");
+		System.out.println(ConsoleColors.GREEN_BOLD+"##     ##  ##  ##       ##  ####");
+		System.out.println(ConsoleColors.GREEN_BOLD+"##     ##  ##  ##       ##   ###");
+		System.out.println(ConsoleColors.GREEN_BOLD+"########  #### ######## ##    ## "+ConsoleColors.RESET);
+		System.out.println(ConsoleColors.GREEN_BACKGROUND_BRIGHT + "                            "+ConsoleColors.RESET);
+	}
+
+	public static void incorrecto()
+	{
+		System.out.println(ConsoleColors.RED_BACKGROUND_BRIGHT + "            "+ConsoleColors.RESET);
+		System.out.println(ConsoleColors.RED+""+"##     ## ");
+		System.out.println(ConsoleColors.RED+" "+"##   ##  ");
+		System.out.println(ConsoleColors.RED+"  "+"## ##  ");
+		System.out.println(ConsoleColors.RED+"   "+"###  ");
+		System.out.println(ConsoleColors.RED+"  "+"## ## ");
+		System.out.println(ConsoleColors.RED+""+" ##   ##");
+		System.out.println(ConsoleColors.RED+""+"##     ##"+ConsoleColors.RESET);
+		System.out.println(ConsoleColors.RED_BACKGROUND_BRIGHT + "             "+ConsoleColors.RESET);	
 	}
 	
 	public static void jugar()
 	{	
 		
 		
-		System.out.println(":: Jugar ::");
+		
+     
+		System.out.print(ConsoleColors.CYAN_BACKGROUND+"                                         ");
+		System.out.println(ConsoleColors.RESET);
+
+		System.out.println(ConsoleColors.PURPLE_BOLD_BRIGHT+"      _____                         ");
+		System.out.println(ConsoleColors.PURPLE_BOLD_BRIGHT+"    _|     |.--.--.-----.---.-.----.");
+		System.out.println(ConsoleColors.PURPLE_BOLD_BRIGHT+"   |       ||  |  |  _  |  _  |   _|");
+		System.out.println(ConsoleColors.PURPLE_BOLD_BRIGHT+"   |_______||_____|___  |___._|__|  ");
+		System.out.println(ConsoleColors.PURPLE_BOLD_BRIGHT+"                  |_____|        ");
+		System.out.println(ConsoleColors.RESET);
+		System.out.print(ConsoleColors.CYAN_BACKGROUND+"                                         ");
+		System.out.println(ConsoleColors.RESET);
+
+		
+		
+
+
 		System.out.println();
 		String banderas[] = ConsoleFile.read("info_banderas.csv");
 		int indices[] = crearIndices(banderas.length/20);
+		System.out.println();	
+		System.out.println();	
+		System.out.println();	
+		System.out.println("Por ser tu primer intento, te dejaremos escoger el país");	
+		System.out.println("que quieres visitar, puedes escoger uno de estos tres:");
+		System.out.println("¿Qué país quieres visitar?");
+		System.out.println("Selecciona: ");
+		System.out.println();
+		System.out.println(ConsoleColors.YELLOW+"1."+ConsoleColors.RESET+ " Perú");
+		imprimirGraficoBandera(banderas, indices[2]);
+		System.out.println(ConsoleColors.YELLOW+"2."+ConsoleColors.RESET+ " Colombia");
 		imprimirGraficoBandera(banderas, indices[1]);
-		System.out.println();	
-		System.out.println();	
-		System.out.println();	
-		System.out.println("Esta es la bandera de Colombia");	
-		System.out.println("Para visitar a este país tenemos 8 cupos disponibles");
-		System.out.println("dependiendo de tu respuesta te decimos si viajas o no viajas");
-		System.out.println("Selecciona lo primero que llevarías");
-		System.out.println(ConsoleColors.YELLOW+"1."+ConsoleColors.RESET+ "Coco");
-		System.out.println(ConsoleColors.YELLOW+"2."+ConsoleColors.RESET+ "Cuchillo");
-		System.out.println(ConsoleColors.YELLOW+"3."+ConsoleColors.RESET+ "Armadillo");
-		System.out.println(ConsoleColors.YELLOW+"4."+ConsoleColors.RESET+ "Colonia");
+		System.out.println(ConsoleColors.YELLOW+"3."+ConsoleColors.RESET+ " Noruega ");
+		imprimirGraficoBandera(banderas, indices[7]);
+		System.out.println(ConsoleColors.YELLOW+"4."+ConsoleColors.RESET+ " Japon ");
+		imprimirGraficoBandera(banderas, indices[11]);
 
 		int centinela_;
 		boolean bandera;
+		boolean bandera3;
 		do
 		{	
 			System.out.println("Ingresa un número: ");
 			centinela_ = ConsoleInput.getInt();
+			int centinela2;
 				switch(centinela_)
 			{
-				case 1:	System.out.println("Viajas" + ConsoleColors.GREEN+ConsoleColors.RESET);
+				
+				case 1:	
+						
+						System.out.println("A la firme compadre, bienvenido a Perú. Empecemos suave," + ConsoleColors.RED+ConsoleColors.RESET);
+						imprimirGraficoBandera(banderas, indices[2]);
+						System.out.println("Estás en Machu Picchu y hace mucho calor, pasas por una heladería");
+						System.out.println("después de 4 horas caminando,");
+						System.out.println("¿Qué sabor de helado escoges para no morirte del calor?");
+						System.out.println("Escoge uno: ");
+						System.out.println("1. Mora");
+						System.out.println("2. Fresa");
+						
+						do
+						{	
+							System.out.println("");
+							centinela2= ConsoleInput.getInt();
+							switch(centinela2)
+							{
+								case 1: correcto();
+								break;
+								case 2: incorrecto();
+								break;
+							}
+							bandera3=false;
+						}while(bandera3);
 						break;
-				case 2: System.out.println("Viajas"+ConsoleColors.GREEN+ConsoleColors.RESET);
+				case 2: 
+						System.out.println("Que más pues parcero, bienvenido a Colombia."+ConsoleColors.GREEN+ConsoleColors.RESET);
+						imprimirGraficoBandera(banderas, indices[1]);
+						System.out.println("Vamos a empezar con una pregunta facilita");
+						System.out.println("Estás en Santa Marta de paseo, son las 6 de la tarde y estás aburrido");
+						System.out.println("¿Qué te pones a hacer?");
+						System.out.println("1. Relajo");
+						System.out.println("2. Jugar");
+
+
+						do
+						{	
+							centinela2=ConsoleInput.getInt();
+							switch(centinela2)
+							{
+								case 1: correcto();
+										break;
+								case 2:	incorrecto();
+										break;
+							}
+							bandera3=false;
+						}while(bandera3);
 						break;
-				case 3: System.out.println("No viajas"+ConsoleColors.RED+ConsoleColors.RESET);
+				case 3: 
+						System.out.println("Bienvenido a Noruega");
+						imprimirGraficoBandera(banderas, indices[7]);
+						System.out.println("Te estás hospedando en un hotel en Oslo,");
+						System.out.println("mañana tienes que viajar a una ciudad que queda a 7 horas de la capital");
+						System.out.println("¿qué deberías hacer?");
+						System.out.println("1. Vacilar");
+						System.out.println("2. Preocuparte");
+						
+						do
+						{	
+							centinela2=ConsoleInput.getInt();
+							switch(centinela2)
+							{
+								case 1: correcto();
+										break;
+								case 2: incorrecto();
+										break;
+							}
+							bandera3=false;
+						}while(bandera3);
 						break;
-				case 4: System.out.println("No viajas"+ConsoleColors.RED+ConsoleColors.RESET);
+				case 4: 
+						System.out.println("Bienvenido a Japon"+ConsoleColors.RED+ConsoleColors.RESET);
+						imprimirGraficoBandera(banderas, indices[11]);
+						System.out.println("En Tokio hay un complejo sistema de transporte, y tu");
+						System.out.println("como turista estas desubicado en la megaciudad, no sabes cual");
+						System.out.println("es el autobus que tienes que tomar para regresar al hotel.");
+						System.out.println("El gran problema es que no sabes hablar japonés");
+						System.out.println("¿Qué haces para conseguir llegar al hotel?");
+						System.out.println("1. Bebes");
+						System.out.println("2. Bailas");
+						
+				        do
+				        {
+							centinela2=ConsoleInput.getInt();
+							switch(centinela2)
+				        	{
+								case 1: correcto();
+										break;
+								case 2: incorrecto();
+										break;
+							}
+							bandera3=false;
+				        }while(bandera3);
 						break;
 				default: System.out.println("Opcion no disponible");
 						break;
@@ -110,10 +227,10 @@ public class Juego
 			bandera=false;
 
 		}while(bandera);
-		
+		separador();
 		System.out.println();
-		System.out.println("Siguiente pregunta, ");
-		System.out.println("Escoge una actividad que quieras realizar: ");
+		System.out.println("Siguiente destino");
+		System.out.println("Escoge una actividad que quieras realizar después de turistear: ");
 		System.out.println(ConsoleColors.YELLOW+"1."+ConsoleColors.RESET+ "Pedir un Uber");
 		System.out.println(ConsoleColors.YELLOW+"2."+ConsoleColors.RESET+ "Ir al supermercado");
 		System.out.println(ConsoleColors.YELLOW+"3."+ConsoleColors.RESET+ " "+ConsoleColors.RED+ "NETFLIX"+ConsoleColors.RESET+ " and chill");
@@ -134,7 +251,8 @@ public class Juego
 				System.out.println();	
 				System.out.println();	
 				System.out.println();
-				System.out.println("Te fue asignada la bandera de Gran Bretaña");
+				System.out.println("Llegas a gran Gran Bretaña y cuentas con este gran problema");
+				imprimirGraficoBandera(banderas, indices[0]);
 				System.out.println("Tienes 11 % de batería en tu telefono" + ConsoleColors.GREEN);
 				System.out.println("¿Que vas a hacer?: ");
 				System.out.println(ConsoleColors.YELLOW+"1."+ConsoleColors.RESET+" Devolverse");
@@ -149,15 +267,15 @@ public class Juego
 					opcion = ConsoleInput.getInt();
 					switch(opcion)
 					{
-						case 1: System.out.println("Incorrecto");
+						case 1: incorrecto();
 								break;
-						case 2: System.out.println("Correcto");
+						case 2: correcto();
 								break;
-						case 3: System.out.println("Incorrecto");
+						case 3: incorrecto();
 								break;
-						case 4: System.out.println("Correcto");
+						case 4: correcto();
 								break;
-						default: System.out.println("Opcion incorrecta");
+						default: System.out.println("Opcion no permitida");
 	
 					}
 					bandera2=false;
@@ -187,13 +305,13 @@ public class Juego
 					opcion = ConsoleInput.getInt();
 					switch(opcion)
 					{
-						case 1: System.out.println("Correcto");
+						case 1: correcto();
 								break;
-						case 2: System.out.println("Correcto");
+						case 2: correcto();
 								break;
-						case 3: System.out.println("Incorrecto");
+						case 3: incorrecto();
 								break;
-						case 4: System.out.println("Incorrecto");
+						case 4: incorrecto();
 								break;
 						default: System.out.println("Opcion incorrecta");
 	
@@ -210,11 +328,12 @@ public class Juego
 				System.out.println("Bienvenido a Aland. Como acabas de llegar a un pais") ;
 				System.out.println("nuevo y no conoces a nadie, prefieres verte una película.");
 				System.out.println("Solo tienes 5 películas para escoger:");
-				System.out.println(ConsoleColors.YELLOW+"1."+ConsoleColors.RESET+" Película 1");
-				System.out.println(ConsoleColors.YELLOW+"2."+ConsoleColors.RESET+" Pelicula 2");
-				System.out.println(ConsoleColors.YELLOW+"3."+ConsoleColors.RESET+" Pelicula 3");
-				System.out.println(ConsoleColors.YELLOW+"4."+ConsoleColors.RESET+" Pelicula 4");
-				System.out.println(ConsoleColors.YELLOW+"5."+ConsoleColors.RESET+" Pelicula 5");
+				System.out.println(ConsoleColors.YELLOW+"1."+ConsoleColors.RESET+" Ironman");
+				System.out.println(ConsoleColors.YELLOW+"2."+ConsoleColors.RESET+" Duel");
+				System.out.println(ConsoleColors.YELLOW+"3."+ConsoleColors.RESET+" 300");
+				System.out.println(ConsoleColors.YELLOW+"4."+ConsoleColors.RESET+"Antman");
+				System.out.println(ConsoleColors.YELLOW+"5."+ConsoleColors.RESET+" Dumbo");
+				
 
 				do
 				{	
@@ -223,17 +342,17 @@ public class Juego
 					opcion = ConsoleInput.getInt();
 					switch(opcion)
 					{
-						case 1: System.out.println("Correcto");
+						case 1: incorrecto();
 								break;
-						case 2: System.out.println("Correcto");
+						case 2: incorrecto();
 								break;
-						case 3: System.out.println("Incorrecto");
+						case 3: incorrecto();
 								break;
-						case 4: System.out.println("Incorrecto");
+						case 4: incorrecto();
 								break;
-					    case 5: System.out.println("Correcto");
+					    case 5: correcto();
 								break;
-						default: System.out.println("Opcion incorrecta");
+						default: System.out.println("Opcion no disponible");
 								break;
 					}
 					bandera2=false;
@@ -246,15 +365,11 @@ public class Juego
 			}
 			bandera_=false;
 		}while(bandera_);
+		separador();
 
-		System.out.println();
-		System.out.println("Siguiente pregunta");
-		System.out.println();
-		System.out.println();
-		System.out.println();
-		System.out.println();
 		imprimirGraficoBandera(banderas, indices[18]);
 		System.out.println();
+		System.out.println("Siguiente destino");
 		System.out.println();
 		System.out.println("En este país asesinaron al presidente, ");
 		System.out.println("son seis los sospechosos de haber cometido este crimen:");
@@ -265,6 +380,7 @@ public class Juego
 		System.out.println(ConsoleColors.YELLOW+"3."+ ConsoleColors.RESET+" Abogado");
 		System.out.println(ConsoleColors.YELLOW+"4."+ ConsoleColors.RESET+" Ingeniero");
 		System.out.println(ConsoleColors.YELLOW+"5."+ ConsoleColors.RESET+" Xaca Rana");
+		System.out.println(ConsoleColors.YELLOW+"6."+ ConsoleColors.RESET+" Felipe");
 
 
 		do
@@ -273,23 +389,122 @@ public class Juego
 			centinela_ = ConsoleInput.getInt();
 				switch(centinela_)
 				{
-				case 1:	System.out.println("Incorrecto");
+				case 1:	incorrecto();
 						break;
-				case 2: System.out.println("Correcto");
+				case 2: correcto();
 						break;
-				case 3: System.out.println("Incorrecto");
+				case 3: incorrecto();
 						break;
-				case 4: System.out.println("Incorrecto");
+				case 4: incorrecto();
 						break;
-				case 5: System.out.println("Incorrecto");
+				case 5: incorrecto();
+						break;
+				case 6: correcto();
+						break;
 				default: System.out.println("Opcion no disponible");
 						break;
 				}
 				bandera = false;
 		}while(bandera);
 
+		separador();
+		//Cuba penúltima pregunta
+			imprimirGraficoBandera(banderas, indices[20]);
+		System.out.println();
+		System.out.println("Estamos por terminar el tour");
+		System.out.println();
+		System.out.println("Cuba es un país poco industrializado debido a su estructura política, ");
+		System.out.println("incluso muchos insumos básicos no son fácil de conseguir,:");
+		System.out.println("pero como buen viajero debes estar preparado para todo");
+		System.out.println("Elige qué llevarías contigo para no morir en el intento");
+		System.out.println();
+		System.out.println(ConsoleColors.YELLOW+"1."+ ConsoleColors.RESET+"Curitas, agua embotellada,botiquín de primeros auxilios,unguento antibiotico");
+		System.out.println(ConsoleColors.YELLOW+"2."+ ConsoleColors.RESET+"Cables para pasar corriente, Vendas, Aspirinas, Paquete de datos");
+		System.out.println(ConsoleColors.YELLOW+"3."+ ConsoleColors.RESET+"Agua oxigenada, Toallas de alcohol, Rollos de gaza, Pinzas");
+
+
+
+		do
+		{		
+			System.out.println("Ingresa un número");
+			centinela_ = ConsoleInput.getInt();
+				switch(centinela_)
+				{
+				case 1:	correcto();
+						break;
+				case 2: incorrecto();
+						break;
+				case 3: incorrecto();
+						break;
+				default: System.out.println("Opcion no disponible");
+						break;
+				}
+				bandera = false;
+		}while(bandera);
+		separador();
+		//Seychelles última pregunta
+
+		imprimirGraficoBandera(banderas, indices[14]);
+		System.out.println();
+		System.out.println("LLegamos a nuestro destino final");
+		System.out.println();
+		System.out.println("Esta isla se caracteriza por ser tierra de piratas");
+		System.out.println("es el destino elegido para esconder tesoros invaluables");
+		System.out.println("Cuál piedra es la que más predomina en Seychelles?");
+		System.out.println();
+		System.out.println(ConsoleColors.YELLOW+"1."+ ConsoleColors.RESET+"Rubi");
+		System.out.println(ConsoleColors.YELLOW+"2."+ ConsoleColors.RESET+"Espinela");
+		System.out.println(ConsoleColors.YELLOW+"3."+ ConsoleColors.RESET+"Ambar");
+		System.out.println(ConsoleColors.YELLOW+"4."+ ConsoleColors.RESET+"Granate");
+
+
+
+		do
+		{		
+			
+			centinela_ = ConsoleInput.getInt();
+				switch(centinela_)
+				{
+				case 1:incorrecto();
+						break;
+				case 2: correcto();
+						break;
+				case 3: incorrecto();
+						break;
+				case 4: incorrecto();
+						break;
+				default: System.out.println("Opcion no disponible");
+						break;
+				}
+
+				if (centinela_==2)
+				{
+					System.out.println(ConsoleColors.CYAN_BOLD_BRIGHT+"+-++-+ +-++-++-++-++-++-++-++-+"+ConsoleColors.RESET);
+					System.out.println(ConsoleColors.RED_BOLD_BRIGHT+"|L||O| |L||O||G||R||A||S||T||E|"+ConsoleColors.RESET);
+					System.out.println(ConsoleColors.CYAN_BOLD_BRIGHT+"+-++-+ +-++-++-++-++-++-++-++-+ "+ConsoleColors.RESET);
+				}
+				else
+				{
+					menu();
+				}
+
+				bandera = false;
+		}while(bandera);
+
+
+
+
+
+
+
+
+
+
+
+
+
 		System.out.println("FIN DEL JUEGO");
-		System.out.println("Tu puntuacion es: ");
+		
 
 	
 
@@ -308,12 +523,44 @@ public class Juego
 	}
 	public static void instrucciones()
 	{
-		System.out.println("Estas son adivinanzas");
+		System.out.println("No todo es lo que parece");
+		System.out.println();
+		System.out.println("Piensa antes de responder");
+		System.out.println("El juego acaba cuando descubras el acertijo");
+		menu();
+
 		
 	}
 	public static void acerca_de()
 	{
-		System.out.println("Los autores están perdidos");
+	System.out.println(ConsoleColors.BLUE+"Los creadores son unos novatos, excusamos por la calidad"+ConsoleColors.RESET);
+	System.out.println(ConsoleColors.CYAN+"No es mucho, pero es trabajo honesto :) aceptamos tus PQRS"+ConsoleColors.RESET);
+	System.out.println("");
+	System.out.println("        "+".-._.---'     .  ");              
+  	System.out.println("   "+"(_) /         /    .-.   ");      
+    System.out.println("      "+"/--..-.   /     `-'.-.   .-.  ");
+    System.out.println("     "+"/  ./.-'_ /     /   /  )./.-'_ ");
+    System.out.println(" "+" .-/   (__.'_/_.-_.(__./`-' (__.'  ");
+    System.out.println(" " +"_/                   /  ");
+    System.out.println();
+    System.out.println("  "+"                  /");
+    System.out.println("  "+".-.  .  .-.  .-../");
+    System.out.println(" "+"(  |   )/   )(   / ");
+    System.out.println(" "+" `-'-''/   (  `-'-..");
+    System.out.println(" "+"            `-        ");
+    System.out.println();
+    System.out.println("    "+"	           .-.                   .     .                      ");
+    System.out.println("   "+".--.`-'                     /     /    .-.       ");
+    System.out.println(" "+" /  (_:    .-.  ).--..-.     / .-../     `-'.  .-..  .-.   .-.  ");
+    System.out.println(" "+"/        ./.-'_/    (  |    / (   /     /    )/   ))/   )./.-' ");
+    System.out.println(""+"(     --:-(__.'/      `-'-'_/_.-`-'-.._.(__. '/   ('/   ( (__.'  ");
+	System.out.println(""+" `.___.'                                           `-    `-    ");
+	menu();
+
+
+
+                         
+
 		
 	}
 	public static int[] crearIndices(int total)
@@ -325,7 +572,10 @@ public class Juego
 			contador+=20;		
 		}
 		return indices;
+
 	}
+
+
 
 	public static void menu()
 
@@ -336,17 +586,18 @@ public class Juego
 		imprimirGraficoBandera(banderas, indices[18]);*/	
 		
 		
+		
 		boolean bandera;
 		
 		do
 		{
 			System.out.println();
-			System.out.println(ConsoleColors.YELLOW+"  "+ " ___  _                 _       ");
-			System.out.println(ConsoleColors.YELLOW+"  "+ "|  _|| | ___  ___  _ _ |_| ___  ___");
-			System.out.println(ConsoleColors.YELLOW+"  "+ "|  _|| || .'|| . || | || ||   || . |");
-			System.out.println(ConsoleColors.YELLOW+"  "+ "|  _|| || .'|| . || | || ||   || . |");
-			System.out.println(ConsoleColors.YELLOW+"  "+ "|_|  |_||__,||_  ||_  ||_||_|_||_  |");
-			System.out.println(ConsoleColors.YELLOW+"  "+ "             |___||___|        |___|"+ConsoleColors.RESET);
+			System.out.println(ConsoleColors.YELLOW_BOLD_BRIGHT+"                 "+"___  _                 _");
+			System.out.println(ConsoleColors.YELLOW_BOLD_BRIGHT+"                "+"|  _|| | ___  ___  _ _ |_| ___  ___"+ConsoleColors.RESET);
+			System.out.println(ConsoleColors.PURPLE_BOLD_BRIGHT+"                "+"|  _|| || .'|| . || | || ||   || . |");
+			System.out.println(ConsoleColors.PURPLE_BOLD_BRIGHT+"                "+"|  _|| || .'|| . || | || ||   || . |"+ConsoleColors.RESET);
+			System.out.println(ConsoleColors.YELLOW_BOLD_BRIGHT+"                "+"|_|  |_||__,||_  ||_  ||_||_|_||_  |");
+			System.out.println(ConsoleColors.YELLOW_BOLD_BRIGHT+"                             "+"|___||___|        |___|"+ConsoleColors.RESET);
 			
 			System.out.println("Escoja una opción");
 			System.out.println(ConsoleColors.YELLOW+"1."+ConsoleColors.RESET+" Bandera con la que voy a jugar");
@@ -386,4 +637,3 @@ public class Juego
 	}
 
 }
-
